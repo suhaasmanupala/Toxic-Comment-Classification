@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Comment Classifier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+    <header class="bg-blue-600 dark:bg-blue-800 text-white py-4 shadow-lg" aria-label="Site Header">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Toxic Comment Classifier</h1>
+            <div>
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700" aria-label="Toggle Dark Mode">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+                <button id="contrast-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700" aria-label="Toggle High Contrast Mode">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <section class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 fade-in" aria-label="Comment Input Section">
+            <h2 class="text-xl font-semibold mb-4">Enter Your Comment</h2>
+            <textarea id="comment-input" rows="4" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your comment here..." aria-label="Comment Input"></textarea>
+            <div id="realtime-feedback" class="mt-2 text-sm" aria-live="polite"></div>
+            <button id="predict-btn" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hover-scale" aria-label="Analyze Comment">Analyze</button>
+        </section>
+
+        <section id="results" class="hidden bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 fade-in" aria-label="Prediction Results">
+            <h2 class="text-xl font-semibold mb-4">Prediction Results</h2>
+            <p id="prediction-text" class="text-lg"></p>
+            <p id="explanation-text" class="mt-2"></p>
+            <canvas id="toxicity-chart" class="mt-4"></canvas>
+            <div id="word-cloud" class="mt-4" style="height: 200px;"></div>
+        </section>
+
+        <section class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 fade-in" aria-label="Prediction History">
+            <h2 class="text-xl font-semibold mb-4">Prediction History</h2>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b dark:border-gray-700">
+                        <th class="py-2">Comment</th>
+                        <th class="py-2">Prediction</th>
+                        <th class="py-2">Confidence</th>
+                    </tr>
+                </thead>
+                <tbody id="history-table"></tbody>
+            </table>
+        </section>
+
+        <section class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8 fade-in" aria-label="Feedback Form">
+            <h2 class="text-xl font-semibold mb-4">Report an Issue</h2>
+            <textarea id="feedback-input" rows="4" class="w-full p-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Describe the issue with the prediction..." aria-label="Feedback Input"></textarea>
+            <button id="feedback-btn" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hover-scale" aria-label="Submit Feedback">Submit Feedback</button>
+        </section>
+
+        <section class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md fade-in" aria-label="User Badges">
+            <h2 class="text-xl font-semibold mb-4">Your Badges</h2>
+            <div id="badges" class="flex flex-wrap gap-4"></div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-200 dark:bg-gray-800 py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Toxic Comment Classifier. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

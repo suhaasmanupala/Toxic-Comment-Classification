@@ -1,0 +1,42 @@
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.high-contrast .bg-white {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.high-contrast .bg-gray-100 {
+    background: #000 !important;
+}
+
+.high-contrast .text-gray-900 {
+    color: #fff !important;
+}
+
+.high-contrast .bg-blue-600 {
+    background: #1e90ff !important;
+}
+
+.high-contrast .border-gray-600 {
+    border-color: #fff !important;
+}
